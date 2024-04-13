@@ -1,9 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import GarageView from './pages/GarageView';
+import WinnersView from './pages/WinnersView';
 
 
 function App() {
   return (
-    <h1>Async Race Task</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<GarageView />} />
+        <Route path='/winners' element={<WinnersView />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
