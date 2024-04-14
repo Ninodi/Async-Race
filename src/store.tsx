@@ -3,7 +3,7 @@ import { ICar } from './interfaces/interfaces'
 
 interface AllCarsStore {
     allCars: ICar[],
-    setAllCars: (cars: ICar[]) => void;
+    setAllCars: (cars: ICar[]) => void
 }
 
 export const useAllCarsStore = create<AllCarsStore>((set) => ({

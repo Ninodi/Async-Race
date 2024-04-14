@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ICar } from '../interfaces/interfaces'
 
 function useFetch({endpoint} : {endpoint: string} ) {
@@ -8,12 +8,13 @@ function useFetch({endpoint} : {endpoint: string} ) {
         try{
             const res = await fetch(`http://127.0.0.1:3000/${endpoint}`)
             if (!res.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Network response was not ok')
             }
 
             const result = await res.json()
             setData(result)
             console.log('logged')
+            return result
         }catch(err){
             console.error(err)
         }

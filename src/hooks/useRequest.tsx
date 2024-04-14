@@ -2,7 +2,7 @@ import React from 'react'
 import { ICar } from '../interfaces/interfaces';
 
 function useRequest({ method, endpoint }: { method: string, endpoint: string }) {
-    const requestData = async (data: ICar) => {
+    const requestData = async (data: ICar | number) => {
       try {
         let options: RequestInit = {
           method,

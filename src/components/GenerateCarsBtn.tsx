@@ -27,7 +27,7 @@ function GenerateCarsBtn() {
 
         await Promise.all(newCars.map((carInfo) => requestData(carInfo)))
         fetchData()
-    };
+    }
 
     return (
         <div>
