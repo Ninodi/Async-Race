@@ -22,7 +22,7 @@ function GenerateCarsBtn() {
         const carNames: string[] = cars?.map((car) => car.name) || []
         const newCars: ICar[] = Array.from({ length: carNum - (allCars ? allCars.length : 0) }, () => ({
             name: carNames[Math.floor(Math.random() * carNames.length)],
-            color: '#fff',
+            color: '#'+ Math.floor(Math.random()*16777215).toString(16),
         }));
 
         await Promise.all(newCars.map((carInfo) => requestData(carInfo)))
@@ -33,7 +33,7 @@ function GenerateCarsBtn() {
         <div>
             <button onClick={() => generateMultipleCars(totalCars)}>Get More Cars</button>
         </div>
-    );
+    )
 }
 
 export default GenerateCarsBtn
