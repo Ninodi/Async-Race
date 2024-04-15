@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import { ICar } from './interfaces/interfaces'
+import { ICar } from './constants/interfaces'
 
 interface AllCarsStore {
     allCars: ICar[],

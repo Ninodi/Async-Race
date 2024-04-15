@@ -1,5 +1,5 @@
 import React from 'react'
-import { ICar } from '../interfaces/interfaces';
+import { ICar } from '../constants/interfaces';
 
 function useRequest({ method, endpoint }: { method: string, endpoint: string }) {
     const requestData = async (data: ICar | number) => {

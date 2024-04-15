@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useFetch from '../hooks/useFetch';
 import useRequest from '../hooks/useRequest';
 import { useAllCarsStore } from '../store';
-import { ICar } from '../interfaces/interfaces';
+import { ICar } from '../constants/interfaces';
 
 function GenerateCarsBtn() {
     const { data: cars, fetchData } = useFetch({ endpoint: 'garage' })
@@ -13,7 +13,7 @@ function GenerateCarsBtn() {
 
     useEffect(() => {
         setAllCars(cars)
-    }, [cars])
+    }, [cars, setAllCars])
 
     const generateMultipleCars = async (carNum: number) => {
         const allCars = useAllCarsStore.getState().allCars

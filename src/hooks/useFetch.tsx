@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ICar } from '../interfaces/interfaces'
+import { ICar } from '../constants/interfaces'
 
 function useFetch({endpoint} : {endpoint: string} ) {
     const [data, setData] = useState<ICar[] | []>([])
