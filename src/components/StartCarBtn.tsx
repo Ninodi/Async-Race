@@ -5,6 +5,8 @@ import { useAllCarsStore } from '../store'
 function StartCarBtn({carId} : {carId: number}) {
     const {requestData} = useRequest({method: 'PATCH', endpoint: `engine?id=${carId}&status=started`})
     const setCarTime = useAllCarsStore((state) => state.setCarTime)
+    const setCarPosition = useAllCarsStore((state) => state.setCarPosition)
+    const setCarAnimation = useAllCarsStore((state) => state.setCarAnimation)
 
     const startEngine = async () => {
         try {
@@ -12,6 +14,8 @@ function StartCarBtn({carId} : {carId: number}) {
             let finalResp = await resp?.json()
             let time = (finalResp.distance / finalResp.velocity) / 1000
             setCarTime(carId, time)
+            setCarAnimation(true)
+            setCarPosition(carId, 100)
         } catch (error) {
             console.error(error)
         }

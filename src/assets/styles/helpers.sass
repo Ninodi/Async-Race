@@ -1,0 +1,42 @@
+*
+    padding: 0
+    margin: 0
+    list-style: none
+    text-decoration: none
+    box-sizing: border-box
+    
+@mixin horizontal($pos: center)
+    display: flex
+    justify-content: $pos
+    align-items: center
+
+@mixin verticalCenter($pos: center)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: $pos
+
+@mixin plus450()
+    @media screen and (min-width: 450px)
+        @content
+
+@mixin plus600()
+    @media screen and (min-width: 600px)
+        @content
+
+@mixin plus769()
+    @media screen and (min-width: 769px)
+        @content
+
+@mixin plus1025()
+    @media screen and (min-width: 1025px)
+        @content
+
+@mixin plus1441()
+    @media screen and (min-width: 1441px)
+        @content
+
+@mixin plusCustom($cust)
+    @media screen and (min-width: $cust)
+        @content
+

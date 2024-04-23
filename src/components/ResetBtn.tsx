@@ -8,6 +8,7 @@ function ResetBtn() {
   const setCarPosition = useAllCarsStore((state) => state.setCarPosition)
   const setCarAnimation = useAllCarsStore((state) => state.setCarAnimation)
   const {requestData} = useRequest({ method: 'PATCH', endpoint: `engine` })
+  const {requestData: rerequest} = useRequest({ method: 'PUT', endpoint: `garage` })
 
   const resetCars = async () => {
     try {
@@ -16,6 +17,11 @@ function ResetBtn() {
         setCarPosition(car.id!, 0) 
         setCarAnimation(false) 
         await requestData(undefined, `?id=${car.id}&status=stopped`)
+        await rerequest({
+          ...car,
+          time: 0,
+          position: 0
+        }, `/${car.id}`)
       })
     } catch (error) {
         console.error("Error resetting cars:", error)

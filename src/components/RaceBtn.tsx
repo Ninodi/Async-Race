@@ -1,31 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useAllCarsStore } from '../store'
 import useRequest from '../hooks/useRequest'
 
-const screenWidth = window.innerWidth
 
-function RaceBtn() {
+function RaceBtn({setWinner} : {setWinner: Dispatch<SetStateAction<number>>}) {
     const allCars = useAllCarsStore((state) => state.allCars)
     const { requestData } = useRequest({ method: 'PATCH', endpoint: `engine` })
     const setCarTime = useAllCarsStore((state) => state.setCarTime)
     const setCarPosition = useAllCarsStore((state) => state.setCarPosition)
     const [shortestTime, setShortestTime] = useState<number>(0)
-    const [winner, setWinner] = useState<number>(0)
     const setCarAnimation = useAllCarsStore((state) => state.setCarAnimation)
-
+    const [totalDistance, setTotalDistance] = useState<number>(0)
+    const {requestData: rerequest} = useRequest({ method: 'PUT', endpoint: `garage` })
+    
     useEffect(() => {
-        if(shortestTime !== 0){
-            allCars.forEach(car => {
-                setCarPosition(car.id!, ((shortestTime * car.velocity!) / 500000) * 100)
+        if (shortestTime !== 0) {
+            allCars.forEach(async car => {
+                const position: number = (shortestTime * car.velocity!) / totalDistance * 100
+                setCarPosition(car.id!, position)
+                await rerequest({
+                    ...car,
+                    time: shortestTime,
+                    position: position
+                }, `/${car.id}`)
             })
 
-            
             setTimeout(() => {
                 setCarAnimation(false)
             }, shortestTime)
         }
     }, [shortestTime])
-
+    
     const startRace = async () => {
         setCarAnimation(true)
         try {
@@ -33,6 +38,7 @@ function RaceBtn() {
                 const response = await requestData(undefined, `?id=${car.id}&status=started`)
                 const { velocity, distance } = await response?.json()
                 const time = distance / velocity
+                setTotalDistance(distance)
                 setCarTime(car.id!, time, velocity)
                 return { car, time }
             })
