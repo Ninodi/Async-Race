@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 type SetCurrPageType = React.Dispatch<React.SetStateAction<number>>
 
@@ -15,7 +15,7 @@ function Pagination({ currPage, setCurrPage, totalPages }: PaginationProps) {
       <button onClick={() => setCurrPage((prevPage: number) => Math.max(prevPage - 1, 1))}>Prev</button>
       <button onClick={() => setCurrPage((prevPage: number) => Math.min(prevPage + 1, totalPages))}>Next</button>
     </div>
- );
+ )
 }
 
-export default Pagination;
+export default Pagination

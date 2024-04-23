@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Pagination from '../components/Pagination'
 import { useAllCarsStore } from '../store'
 import GenerateCarsBtn from '../components/GenerateCarsBtn'
-import RemoveCarBtn from '../components/RemoveCarBtn'
 import AddCarBtn from '../components/AddCarBtn'
 import Header from '../components/Header'
-import SelectCarBtn from '../components/SelectCarBtn'
 import EditCarBtn from '../components/EditCarBtn'
+import Car from '../components/Car'
+import RaceBtn from '../components/RaceBtn'
+import ResetBtn from '../components/ResetBtn'
 
 function GarageView() {
     const [currPage, setCurrPage] = useState<number>(1)
@@ -15,24 +16,25 @@ function GarageView() {
     const itemPerPage: number = 7
     const startIndex = (currPage - 1) * itemPerPage
     const endIndex = startIndex + itemPerPage
-
     const displayedCars = allCars?.slice(startIndex, endIndex)
     const totalPages = Math.ceil(allCars?.length / itemPerPage)
 
-
+    useEffect(() => {
+      console.log('GarageView rendered') // Log when GarageView re-renders
+    })
   return (
     <div>
-        <Header/>
-        <GenerateCarsBtn />
-        <AddCarBtn />
-        <EditCarBtn selectedCar={selectedCar} setSelectedCar={setSelectedCar} />
+          <Header/>
+        <div className="controls">
+          <RaceBtn />
+          <ResetBtn />
+          <GenerateCarsBtn />
+          <AddCarBtn />
+          <EditCarBtn selectedCar={selectedCar} setSelectedCar={setSelectedCar} />
+        </div>
         <div className='race-field'>
           {displayedCars && displayedCars?.map(each => (
-            <div key={each.id}>
-              <p>{each.name}, {each.id} {each.color}</p>
-              <RemoveCarBtn carId={each.id!} />
-              <SelectCarBtn setSelectedCar={setSelectedCar} carId={each.id!}/>
-            </div>
+            <Car key={each.id} setSelectedCar={setSelectedCar} name={each.name} color={each.color} id={each.id}/>
           ))}
         </div>
         <Pagination currPage={currPage} setCurrPage={setCurrPage} totalPages={totalPages}/>

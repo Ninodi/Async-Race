@@ -13,7 +13,7 @@ function EditCarBtn({selectedCar, setSelectedCar}: {selectedCar: number, setSele
     const setAllCars = useAllCarsStore((state) => state.setAllCars)
 
     const editCar = async () => {
-        if(selectedCar === 0 || carName === '') return
+        if(selectedCar === 0 ) return
         await requestData({
             name: carName,
             color: color

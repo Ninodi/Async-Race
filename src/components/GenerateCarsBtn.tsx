@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import useFetch from '../hooks/useFetch';
-import useRequest from '../hooks/useRequest';
-import { useAllCarsStore } from '../store';
-import { ICar } from '../constants/interfaces';
+import React, { useEffect } from 'react'
+import useFetch from '../hooks/useFetch'
+import useRequest from '../hooks/useRequest'
+import { useAllCarsStore } from '../store'
+import { ICar } from '../constants/interfaces'
 
 function GenerateCarsBtn() {
-    const { data: cars, fetchData } = useFetch({ endpoint: 'garage' })
+    const { data: cars, fetchData} = useFetch({ endpoint: 'garage' })
     const { requestData } = useRequest({ method: 'POST', endpoint: 'garage' })
     const setAllCars = useAllCarsStore((state) => state.setAllCars)
 
-    const totalCars: number = 100
+    const totalCars: number = 20
 
     useEffect(() => {
         setAllCars(cars)
