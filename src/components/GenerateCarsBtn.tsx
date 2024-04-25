@@ -21,7 +21,7 @@ function GenerateCarsBtn() {
 
         const carNames: string[] = cars?.map((car) => car.name) || []
         const newCars: ICar[] = Array.from({ length: carNum - (allCars ? allCars.length : 0) }, () => ({
-            name: carNames[Math.floor(Math.random() * carNames.length)],
+            name: `${carNames[Math.floor(Math.random() * carNames.length)]} ${carNames[Math.floor(Math.random() * carNames.length)]}`,
             color: '#'+ Math.floor(Math.random()*16777215).toString(16),
         }));
 
