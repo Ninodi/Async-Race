@@ -11,12 +11,16 @@ function EditCarBtn({selectedCar, setSelectedCar}: {selectedCar: number, setSele
     const {requestData} =  useRequest({method: 'PUT', endpoint: `garage/${selectedCar}`})
     const {fetchData} = useFetch({endpoint: 'garage'})
     const setAllCars = useAllCarsStore((state) => state.setAllCars)
+    const allCars = useAllCarsStore((state) => state.allCars)
 
     const editCar = async () => {
         if(selectedCar === 0 ) return
+        const currCar = allCars.find(car => car.id === selectedCar)
+        
         await requestData({
-            name: carName,
-            color: color
+            name: carName === '' ? (currCar?.name ?? '') : carName,
+            color: color,
+            position: currCar?.position
         })
 
         const updatedCars = await fetchData()
