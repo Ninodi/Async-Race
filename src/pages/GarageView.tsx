@@ -13,7 +13,8 @@ import FinishLine from '../components/FinishLine'
 import WinnerBanner from '../components/WinnerBanner'
 
 function GarageView() {
-    const [currPage, setCurrPage] = useState<number>(1)
+    const garagePage = sessionStorage.getItem('garagePage')
+    const [currPage, setCurrPage] = useState<number>(Number(garagePage) || 1)
     const [selectedCar, setSelectedCar] = useState<number>(0)
     const [winner, setWinner] = useState<number>(0)
     const allCars = useAllCarsStore((state) => state.allCars)
@@ -24,7 +25,7 @@ function GarageView() {
     const totalPages = Math.ceil(allCars?.length / itemPerPage)
     const [winnerBanner, setWinnerBanner] = useState<boolean>(false)
 
-
+  console.log(typeof garagePage)
   return (
     <div className='app-container'>
           <Header/>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type SetCurrPageType = React.Dispatch<React.SetStateAction<number>>
 
@@ -9,6 +9,9 @@ interface PaginationProps {
 }
 
 function Pagination({ currPage, setCurrPage, totalPages }: PaginationProps) {
+  useEffect(() => {
+    sessionStorage.setItem("garagePage", `${currPage}`)
+  }, [currPage])
  return (
     <div className='pagination-container'>
       <button onClick={() => setCurrPage((prevPage: number) => Math.max(prevPage - 1, 1))}>Prev</button>
