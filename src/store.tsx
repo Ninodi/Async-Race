@@ -39,7 +39,7 @@ export const useAllCarsStore = create<AllCarsStore>()(devtools((set) => ({
         set((state) => ({
             animationStatus: status
         }))
-    }
+    },
 })))
 
 

@@ -1,7 +1,7 @@
-import { ICar } from '../constants/interfaces';
+import { ICar, IWinnerInfo } from '../constants/interfaces';
 
 function useRequest({ method, endpoint }: { method: string, endpoint: string }) {
-  const requestData = async (body?: ICar | number, custom?: string) => {
+  const requestData = async (body?: ICar | IWinnerInfo | number, custom?: string) => {
     try {
       let options: RequestInit = {
           method,

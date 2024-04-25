@@ -3,6 +3,15 @@ export interface ICar{
     color: string;
     id?: number;
     time?: number;
+    bestTime?: number;
+    wins?: number;
     velocity?: number;
     position?: number;
+}
+
+
+export interface IWinnerInfo {
+    id: number;
+    time: number;
+    wins: number;
 }

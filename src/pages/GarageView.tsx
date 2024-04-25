@@ -9,6 +9,9 @@ import CarLane from '../components/CarLane'
 import RaceBtn from '../components/RaceBtn'
 import ResetBtn from '../components/ResetBtn'
 import '../assets/styles/GarageView.css'
+import FinishLine from '../components/FinishLine'
+import WinnerBanner from '../components/WinnerBanner'
+
 function GarageView() {
     const [currPage, setCurrPage] = useState<number>(1)
     const [selectedCar, setSelectedCar] = useState<number>(0)
@@ -19,15 +22,14 @@ function GarageView() {
     const endIndex = startIndex + itemPerPage
     const displayedCars = allCars?.slice(startIndex, endIndex)
     const totalPages = Math.ceil(allCars?.length / itemPerPage)
+    const [winnerBanner, setWinnerBanner] = useState<boolean>(false)
 
-    useEffect(() => {
-      console.log('GarageView rendered') // Log when GarageView re-renders
-    })
+
   return (
-    <div>
+    <div className='app-container'>
           <Header/>
         <div className="controls">
-          <RaceBtn setWinner={setWinner}/>
+          <RaceBtn setWinner={setWinner} winner={winner} setWinnerBanner={setWinnerBanner}/>
           <ResetBtn />
           <GenerateCarsBtn />
           <AddCarBtn />
@@ -39,6 +41,7 @@ function GarageView() {
           ))}
         </div>
         <Pagination currPage={currPage} setCurrPage={setCurrPage} totalPages={totalPages}/>
+        <WinnerBanner winner={winner} setWinner={setWinner} setWinnerBanner={setWinnerBanner} winnerBanner={winnerBanner}/>
     </div>
   )
 }

@@ -12,7 +12,7 @@ function StartCarBtn({carId} : {carId: number}) {
         try {
             let resp = await requestData()
             let finalResp = await resp?.json()
-            let time = (finalResp.distance / finalResp.velocity) / 1000
+            let time = finalResp.distance / finalResp.velocity
             setCarTime(carId, time)
             setCarAnimation(true)
             setCarPosition(carId, 100)
@@ -21,9 +21,7 @@ function StartCarBtn({carId} : {carId: number}) {
         }
     }
   return (
-    <div>
-        <button onClick={startEngine} >Start Car</button>
-    </div>
+    <button id='start-btn' onClick={startEngine} >Start Car</button>
   )
 }
 

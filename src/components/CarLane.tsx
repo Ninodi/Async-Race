@@ -6,6 +6,7 @@ import StopCarBtn from './StopCarBtn'
 import { ICar } from '../constants/interfaces'
 import { useAllCarsStore } from '../store'
 import Car from './Car'
+import FinishLine from './FinishLine'
 
 interface CarProps extends ICar {
     setSelectedCar: React.Dispatch<React.SetStateAction<number>>
@@ -27,7 +28,6 @@ function CarLane({id, name, color, setSelectedCar} : CarProps) {
       <div className='car-lane' key={id}>
         <span>{name}</span>
           <div className="car-controls">
-          {/* <p>{name}, {id} {color}, {car?.time || 0}</p> */}
             <RemoveCarBtn carId={id!} />
             <SelectCarBtn setSelectedCar={setSelectedCar} carId={id!} />
             <StartCarBtn carId={id!} />
@@ -37,6 +37,7 @@ function CarLane({id, name, color, setSelectedCar} : CarProps) {
           >
             <Car color={color} />
           </div>
+          <FinishLine />
       </div>
   )
 }

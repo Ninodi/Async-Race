@@ -4,4 +4,16 @@
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #7DCEA0;
+  background-color: #ABEBC6;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
 }/*# sourceMappingURL=helpers.css.map */

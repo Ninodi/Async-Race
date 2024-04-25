@@ -30,9 +30,7 @@ function GenerateCarsBtn() {
     }
 
     return (
-        <div>
-            <button onClick={() => generateMultipleCars(totalCars)}>Get More Cars</button>
-        </div>
+        <button id='more-cars-btn' onClick={() => generateMultipleCars(totalCars)}>Get More Cars</button>
     )
 }
 

@@ -18,7 +18,7 @@ function RemoveCarBtn({carId} : {carId: number }) {
     }
 
   return (
-    <button key={carId} onClick={deleteCar}>Remove {carId}</button>
+    <button id='delete-btn' key={carId} onClick={deleteCar}>Remove</button>
   )
 }
 

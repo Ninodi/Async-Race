@@ -10,9 +10,9 @@ interface PaginationProps {
 
 function Pagination({ currPage, setCurrPage, totalPages }: PaginationProps) {
  return (
-    <div>
-      <div>Page {currPage} / {totalPages}</div>
+    <div className='pagination-container'>
       <button onClick={() => setCurrPage((prevPage: number) => Math.max(prevPage - 1, 1))}>Prev</button>
+      <div>{currPage} / {totalPages}</div>
       <button onClick={() => setCurrPage((prevPage: number) => Math.min(prevPage + 1, totalPages))}>Next</button>
     </div>
  )

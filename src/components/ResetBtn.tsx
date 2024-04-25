@@ -28,7 +28,7 @@ function ResetBtn() {
     }
   }
   return (
-    <button onClick={resetCars}>Reset</button>
+    <button id='reset-btn' onClick={resetCars}>Reset</button>
   )
 }
 

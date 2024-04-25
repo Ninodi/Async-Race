@@ -8,6 +8,7 @@ function StopCarBtn({carId} : {carId: number}) {
     const setCarTime = useAllCarsStore((state) => state.setCarTime)
     const setCarPosition = useAllCarsStore((state) => state.setCarPosition)
     const setCarAnimation = useAllCarsStore((state) => state.setCarAnimation)
+
     const startEngine = async () => {
         try {
             setCarTime(carId, 0)
@@ -20,7 +21,7 @@ function StopCarBtn({carId} : {carId: number}) {
 
     }
   return (
-    <button onClick={startEngine}>Stop Car</button>
+    <button id='stop-btn' onClick={startEngine}>Stop Car</button>
   )
 }
 

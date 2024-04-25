@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import GarageView from './pages/GarageView';
+// import GarageView from './pages/GarageView';
 import WinnersView from './pages/WinnersView';
-
+import GarageView from './pages/GarageView';
 
 function App() {
   return (

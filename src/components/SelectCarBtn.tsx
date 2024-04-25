@@ -7,7 +7,7 @@ type SelectCarProps = {
 
 function SelectCarBtn({setSelectedCar, carId}: SelectCarProps) {
   return (
-    <button onClick={() => setSelectedCar(carId)}>Select</button>
+    <button id='select-btn' onClick={() => setSelectedCar(carId)}>Select</button>
   )
 }
 

@@ -4,9 +4,10 @@ import { ICar } from '../constants/interfaces'
 function useFetch({endpoint} : {endpoint: string} ) {
     const [data, setData] = useState<ICar[] | []>([])
 
-    const fetchData = useCallback(async() => {
+    const fetchData = useCallback(async(custom?: string) => {
+        let url = custom ? `http://127.0.0.1:3000/${endpoint}` + custom : `http://127.0.0.1:3000/${endpoint}`
         try{
-            const res = await fetch(`http://127.0.0.1:3000/${endpoint}`)
+            const res = await fetch(url)
             if (!res.ok) {
                 throw new Error('Network response was not ok')
             }
