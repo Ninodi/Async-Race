@@ -30,7 +30,7 @@ function WinnerBanner({setWinner, winner, setWinnerBanner, winnerBanner} : {winn
         <h1>Winner</h1>
         <div>
             <h2>{winnerCar?.name}</h2>
-            <h2>Time: {((winnerCar?.time || 0) / 1000).toFixed(2)}s</h2>
+            <h2>Time: {((winnerCar?.time || 0) / 100).toFixed(2)}s</h2>
         </div>
         <button id='close-btn' onClick={() => setWinnerBanner(false)}>X</button>
     </div>

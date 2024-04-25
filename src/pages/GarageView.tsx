@@ -25,7 +25,10 @@ function GarageView() {
     const totalPages = Math.ceil(allCars?.length / itemPerPage)
     const [winnerBanner, setWinnerBanner] = useState<boolean>(false)
 
-  console.log(typeof garagePage)
+  const storePage = (pageType: string) => {
+    sessionStorage.setItem(pageType, `${currPage}`)
+  }
+
   return (
     <div className='app-container'>
           <Header/>
@@ -41,7 +44,7 @@ function GarageView() {
             <CarLane key={each.id} setSelectedCar={setSelectedCar} name={each.name} color={each.color} id={each.id}/>
           ))}
         </div>
-        <Pagination currPage={currPage} setCurrPage={setCurrPage} totalPages={totalPages}/>
+        <Pagination currPage={currPage} setCurrPage={setCurrPage} totalPages={totalPages} storePage={() => storePage('garagePage')}/>
         <WinnerBanner winner={winner} setWinner={setWinner} setWinnerBanner={setWinnerBanner} winnerBanner={winnerBanner}/>
     </div>
   )

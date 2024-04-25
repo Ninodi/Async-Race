@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #7DCEA0;
+  background-color: #ABEBC6;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+.winners-content-container {
+  width: 80%;
+  background-color: transparents;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+.winners-container {
+  border-radius: 20px;
+  background-color: #D9EDDF;
+}
+
+.winners-list {
+  padding: 20px;
+}
+
+.title-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 20px;
+  font-size: 20px;
+  background-color: #fff;
+  padding: 5px 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.winner-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.winner-row .car-obj {
+  width: 70px;
+  margin-top: -20px;
+}
+
+.pag {
+  background-color: #ABEBC6;
+}/*# sourceMappingURL=WinnersView.css.map */

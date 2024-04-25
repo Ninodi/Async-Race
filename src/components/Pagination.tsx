@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 
 type SetCurrPageType = React.Dispatch<React.SetStateAction<number>>
 
 interface PaginationProps {
  currPage: number;
  setCurrPage: SetCurrPageType;
- totalPages: number
+ totalPages: number;
+ storePage: () => void
 }
 
-function Pagination({ currPage, setCurrPage, totalPages }: PaginationProps) {
+function Pagination({ currPage, setCurrPage, totalPages, storePage }: PaginationProps) {
+  const location = useLocation();
   useEffect(() => {
-    sessionStorage.setItem("garagePage", `${currPage}`)
-  }, [currPage])
+    storePage()
+  }, [currPage, storePage, location])
+
  return (
     <div className='pagination-container'>
       <button onClick={() => setCurrPage((prevPage: number) => Math.max(prevPage - 1, 1))}>Prev</button>
