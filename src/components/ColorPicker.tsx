@@ -9,7 +9,6 @@ function ColorPicker({setCarColor}: ColorPickerProps) {
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setColor(e.target.value)
-        console.log(color)
     }
 
     useEffect(() => {

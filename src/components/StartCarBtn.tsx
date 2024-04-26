@@ -10,9 +10,9 @@ function StartCarBtn({carId} : {carId: number}) {
 
     const startEngine = async () => {
         try {
-            let resp = await requestData()
-            let finalResp = await resp?.json()
-            let time = finalResp.distance / finalResp.velocity
+            const resp = await requestData()
+            const finalResp = await resp?.json()
+            const time = finalResp.distance / finalResp.velocity
             setCarTime(carId, time)
             setCarAnimation(true)
             setCarPosition(carId, 100)

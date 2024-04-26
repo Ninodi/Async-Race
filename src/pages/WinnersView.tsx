@@ -13,7 +13,7 @@ function WinnersView() {
   const {fetchData: fetchCars} = useFetch({endpoint: 'garage'})
   const winnersPage = sessionStorage.getItem('winnersPage')
   const [currPage, setCurrPage] = useState<number>(Number(winnersPage) || 1)
-  const itemPerPage: number = 7
+  const itemPerPage = 7
   const startIndex = (currPage - 1) * itemPerPage
   const endIndex = startIndex + itemPerPage
   const displayedCars = winnerList?.slice(startIndex, endIndex)
@@ -22,7 +22,7 @@ function WinnersView() {
 
   useEffect(() => {
     const getCars = async () => {
-      let resp = await fetchCars()
+      const resp = await fetchCars()
       setAllCars(resp)
     }
     getCars()

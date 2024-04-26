@@ -9,7 +9,7 @@ function GenerateCarsBtn() {
     const { requestData } = useRequest({ method: 'POST', endpoint: 'garage' })
     const setAllCars = useAllCarsStore((state) => state.setAllCars)
 
-    const totalCars: number = 20
+    const totalCars = 20
 
     useEffect(() => {
         setAllCars(cars)

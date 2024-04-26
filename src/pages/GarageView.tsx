@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import React from 'react';
+import { useState } from 'react'
 import Pagination from '../components/Pagination'
 import { useAllCarsStore } from '../store'
 import GenerateCarsBtn from '../components/GenerateCarsBtn'
@@ -9,7 +10,6 @@ import CarLane from '../components/CarLane'
 import RaceBtn from '../components/RaceBtn'
 import ResetBtn from '../components/ResetBtn'
 import '../assets/styles/GarageView.css'
-import FinishLine from '../components/FinishLine'
 import WinnerBanner from '../components/WinnerBanner'
 
 function GarageView() {
@@ -18,7 +18,7 @@ function GarageView() {
     const [selectedCar, setSelectedCar] = useState<number>(0)
     const [winner, setWinner] = useState<number>(0)
     const allCars = useAllCarsStore((state) => state.allCars)
-    const itemPerPage: number = 7
+    const itemPerPage = 7
     const startIndex = (currPage - 1) * itemPerPage
     const endIndex = startIndex + itemPerPage
     const displayedCars = allCars?.slice(startIndex, endIndex)

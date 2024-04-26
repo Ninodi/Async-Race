@@ -1,5 +1,6 @@
+import React from 'react';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import GarageView from './pages/GarageView';
 import WinnersView from './pages/WinnersView';
 import GarageView from './pages/GarageView';
 

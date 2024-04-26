@@ -13,8 +13,8 @@ function ResetBtn() {
   const resetCars = async () => {
     try {
       allCars.forEach( async (car) => {
-        setCarTime(car.id!, 0, 0)
-        setCarPosition(car.id!, 0) 
+        setCarTime(car.id ?? 0, 0, 0)
+        setCarPosition(car.id ?? 0, 0) 
         setCarAnimation(false) 
         await requestData(undefined, `?id=${car.id}&status=stopped`)
         await rerequest({

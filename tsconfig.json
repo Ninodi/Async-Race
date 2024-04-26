@@ -19,9 +19,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noImplicitAny": true,
+    "noImplicitAny": true
   },
   "include": [
     "src"
+  ],
+  "files": [
+    "src/index.tsx"
   ]
 }
