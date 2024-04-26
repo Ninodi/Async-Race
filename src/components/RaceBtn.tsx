@@ -21,8 +21,8 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
     useEffect(() => {
         if (shortestTime !== 0) {
             allCars.forEach(async car => {
-                const position: number = (shortestTime * car.velocity!) / totalDistance * 100
-                setCarPosition(car.id!, position)
+                const position: number = (shortestTime * (car.velocity ?? 0)) / totalDistance * 100
+                setCarPosition(car.id ?? 0, position)
                 await rerequest({
                     ...car,
                     position: position
@@ -31,11 +31,11 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
 
             setTimeout(async () => {
                 setCarAnimation(false)
-                let allWinners = await fetchData()
-                let currWinner = allWinners.find((car: IWinnerInfo) => car.id === winner)
+                const allWinners = await fetchData()
+                const currWinner = allWinners.find((car: IWinnerInfo) => car.id === winner)
 
                 //adding win counts       
-                if(!Boolean(currWinner)) {
+                if(!currWinner) {
                     await requestWinner({
                         id: winner,
                         wins: 1,
@@ -59,10 +59,10 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
         try {
             const requests = allCars.map(async (car) => {
                 const response = await requestData(undefined, `?id=${car.id}&status=started`)
-                const { velocity, distance } = await response?.json()
+                const { velocity, distance } = await response?.json() || undefined
                 const time = distance / velocity
                 setTotalDistance(distance)
-                setCarTime(car.id!, time, velocity)
+                setCarTime(car.id ?? 0, time, velocity)
                 return { car, time }
             })
             const results = await Promise.all(requests)
@@ -72,7 +72,7 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
                 return current.time < shortest.time ? current : shortest
             })
             // set the winner
-            setWinner(winnerCarInfo.car.id!)
+            setWinner(winnerCarInfo.car.id ?? 0)
             
             // setshortest time
             setShortestTime(winnerCarInfo.time)

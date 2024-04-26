@@ -23,15 +23,16 @@ function CarLane({id, name, color, setSelectedCar} : CarProps) {
     setCurrCarPosition(car?.position || 0)
   }, [car])
 
+  const carId = id ?? 0
 
   return (
       <div className='car-lane' key={id}>
         <span>{name}</span>
           <div className="car-controls">
-            <RemoveCarBtn carId={id!} />
-            <SelectCarBtn setSelectedCar={setSelectedCar} carId={id!} />
-            <StartCarBtn carId={id!} />
-            <StopCarBtn carId={id!}/>
+            <RemoveCarBtn carId={carId} />
+            <SelectCarBtn setSelectedCar={setSelectedCar} carId={carId} />
+            <StartCarBtn carId={carId} />
+            <StopCarBtn carId={carId}/>
           </div>
           <div className={`car-obj ${animationStatus ? 'moving' : ''}`} style={{ marginLeft: `${currCarPosition === 0 ? `${currCarPosition}%` :`calc(${currCarPosition}% - 200px)`}`}}
           >
