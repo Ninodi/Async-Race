@@ -29,7 +29,6 @@ function EditCarBtn({selectedCar, setSelectedCar}: {selectedCar: number, setSele
         setAllCars(updatedCars)
         setCarName('')
         setSelectedCar(0)
-        console.log(selectedCar + ' was edited')
     }
   return (
     <div className='edit-car-box'>

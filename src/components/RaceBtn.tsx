@@ -21,6 +21,8 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
     useEffect(() => {
         if (shortestTime !== 0) {
             allCars.forEach(async car => {
+                const position: number = (shortestTime * (car?.velocity ?? 0)) / totalDistance * 100
+                setCarPosition((car.id ?? 0), position)
                 const position: number = (shortestTime * (car.velocity ?? 0)) / totalDistance * 100
                 setCarPosition(car.id ?? 0, position)
                 await rerequest({

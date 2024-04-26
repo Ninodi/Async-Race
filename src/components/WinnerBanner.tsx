@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction} from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useAllCarsStore } from '../store'
 
-function WinnerBanner({ winner, setWinnerBanner, winnerBanner} : {winner: number, setWinner: Dispatch<SetStateAction<number>>, winnerBanner: boolean, setWinnerBanner: Dispatch<SetStateAction<boolean>>}) {
+function WinnerBanner({winner, setWinnerBanner, winnerBanner} : {winner: number, setWinner: Dispatch<SetStateAction<number>>, winnerBanner: boolean, setWinnerBanner: Dispatch<SetStateAction<boolean>>}) {
     const allCars = useAllCarsStore((state) => state.allCars)
     const winnerCar = allCars.find(car => car.id === winner)
   return (
