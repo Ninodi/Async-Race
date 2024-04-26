@@ -7,37 +7,36 @@ import Car from '../components/Car'
 import Pagination from '../components/Pagination'
 
 function WinnersView() {
-  const {fetchData} = useFetch({endpoint: 'winners'})
-  const [winnerList, setWinnerList] = useState<ICar[] | []>([])
-  const [allCars, setAllCars] = useState<ICar [] | []>([])
-  const {fetchData: fetchCars} = useFetch({endpoint: 'garage'})
-  const winnersPage = sessionStorage.getItem('winnersPage')
-  const [currPage, setCurrPage] = useState<number>(Number(winnersPage) || 1)
-  const itemPerPage = 7
-  const startIndex = (currPage - 1) * itemPerPage
-  const endIndex = startIndex + itemPerPage
-  const displayedCars = winnerList?.slice(startIndex, endIndex)
-  const totalPages = Math.ceil(winnerList?.length / itemPerPage)
+ const { fetchData } = useFetch({ endpoint: 'winners' })
+ const [winnerList, setWinnerList] = useState<ICar[] | []>([])
+ const [allCars, setAllCars] = useState<ICar[] | []>([])
+ const { fetchData: fetchCars } = useFetch({ endpoint: 'garage' })
+ const winnersPage = sessionStorage.getItem('winnersPage')
+ const [currPage, setCurrPage] = useState<number>(Number(winnersPage) || 1)
+ const itemPerPage = 7
+ const startIndex = (currPage - 1) * itemPerPage
+ const endIndex = startIndex + itemPerPage
+ const displayedCars = winnerList?.slice(startIndex, endIndex)
+ const totalPages = Math.ceil(winnerList?.length / itemPerPage)
 
-
-  useEffect(() => {
-    const getCars = async () => {
-      const resp = await fetchCars()
-      setAllCars(resp)
-    }
-    getCars()
-  }, [])
-
-  const storePage = (pageType: string) => {
-    sessionStorage.setItem(pageType, `${currPage}`)
+ useEffect(() => {
+  const getCars = async () => {
+    const resp = await fetchCars()
+    setAllCars(resp)
   }
+  getCars()
+}, [])
 
-  useEffect(() => {
+
+ const storePage = (pageType: string) => {
+    sessionStorage.setItem(pageType, `${currPage}`)
+ }
+
+ useEffect(() => {
     const fetchWinners = async () => {
       const winnersData = await fetchData()
 
       const formattedWinners = winnersData.map((eachCar: IWinnerInfo) => {
-
         const car = allCars.find((car: ICar) => car.id === eachCar.id)
         const name = car ? car.name : 'Unknown'
         const color = car ? car.color : 'Unknown'
@@ -49,19 +48,39 @@ function WinnersView() {
           wins: eachCar.wins,
           bestTime: eachCar.time
         }
-
       })
       setWinnerList(formattedWinners)
     }
-  
-    fetchWinners()
-  }, [allCars])
-  
 
-  return (
+    if (allCars.length > 0) { // Ensure allCars is not empty before fetching winners
+      fetchWinners()
+    }
+ }, [fetchData, allCars]) // Add allCars as a dependency
+
+ const sortByWins = () => {
+    if (allCars.length > 0) { // Ensure allCars is not empty before sorting
+      const sortedWinners = [...winnerList].sort((a, b) => (b.wins ?? 0) - (a.wins ?? 0))
+      setWinnerList(sortedWinners)
+      sessionStorage.setItem('sortCriteria', 'wins')
+    }
+ }
+
+ const sortByBestTime = () => {
+    if (allCars.length > 0) { // Ensure allCars is not empty before sorting
+      const sortedWinners = [...winnerList].sort((a, b) => (a.bestTime ?? 0) - (b.bestTime ?? 0))
+      setWinnerList(sortedWinners)
+      sessionStorage.setItem('sortCriteria', 'bestTime')
+    }
+ }
+ 
+ return (
     <div className='app-container'>
       <Header />
       <div className="winners-content-container">
+        <div className="sorting-btns">
+          <button onClick={sortByWins}>Sort by wins</button>
+          <button onClick={sortByBestTime}>Sort by time</button>
+        </div>
         <div className="winners-container">
           <div className="title-bar">
             <p>N</p>
@@ -75,7 +94,7 @@ function WinnersView() {
               <div key={car.id} className="winner-row">
                 <p>{car.id}</p>
                 <div className="car-obj">
-                  <Car color={car.color} />
+                 <Car color={car.color} />
                 </div>
                 <p>{car.name}</p>
                 <p>{car.wins}</p>
@@ -89,7 +108,7 @@ function WinnersView() {
         </div>
       </div>
     </div>
-  )
+ )
 }
 
 export default WinnersView
