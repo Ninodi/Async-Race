@@ -5,26 +5,6 @@ import useFetch from '../hooks/useFetch'
 function WinnerBanner({setWinner, winner, setWinnerBanner, winnerBanner} : {winner: number, setWinner: Dispatch<SetStateAction<number>>, winnerBanner: boolean, setWinnerBanner: Dispatch<SetStateAction<boolean>>}) {
     const allCars = useAllCarsStore((state) => state.allCars)
     const winnerCar = allCars.find(car => car.id === winner)
-    // const {fetchData} = useFetch({endpoint: `winners/${winner}`})
-    // const [winInfo, setWinInfo] = useState<{
-    //     bestTime: number;
-    //     wins: number;
-    // }>({
-    //     bestTime: 0,
-    //     wins: 0
-    // })
-
-    // useEffect(() => {
-    //     const getWinInfo = async() => {
-    //         let resp = await fetchData()
-    //         setWinInfo({
-    //             bestTime: resp.time,
-    //             wins: resp.wins
-    //         })
-    //     }
-        
-    //     getWinInfo()
-    // }, [winner])
   return (
     <div id='winner-banner-container' className={winnerBanner ? '' : 'hidden'}>
       <div className="winner-banner">

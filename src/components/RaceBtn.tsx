@@ -30,7 +30,6 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
             })
 
             setTimeout(async () => {
-                setWinnerBanner(true)
                 setCarAnimation(false)
                 let allWinners = await fetchData()
                 let currWinner = allWinners.find((car: IWinnerInfo) => car.id === winner)
@@ -71,13 +70,15 @@ function RaceBtn({setWinner, winner, setWinnerBanner} : {winner: number, setWinn
             // get winner car info
             const winnerCarInfo = results.reduce((shortest, current) => {
                 return current.time < shortest.time ? current : shortest
-            });
-
+            })
             // set the winner
             setWinner(winnerCarInfo.car.id!)
-    
+            
             // setshortest time
             setShortestTime(winnerCarInfo.time)
+            setTimeout(() => {
+                setWinnerBanner(true)
+            }, 1000)
             return winnerCarInfo.car
         } catch (err) {
             console.log(err)
