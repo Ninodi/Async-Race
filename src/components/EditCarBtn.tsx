@@ -13,6 +13,7 @@ function EditCarBtn({selectedCar, setSelectedCar}: {selectedCar: number, setSele
     const setAllCars = useAllCarsStore((state) => state.setAllCars)
     const allCars = useAllCarsStore((state) => state.allCars)
 
+
     const editCar = async () => {
         if(selectedCar === 0 ) return
         const currCar = allCars.find(car => car.id === selectedCar)

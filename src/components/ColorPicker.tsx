@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type ColorPickerProps = {
     setCarColor: React.Dispatch<React.SetStateAction<string>>
@@ -9,8 +9,12 @@ function ColorPicker({setCarColor}: ColorPickerProps) {
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setColor(e.target.value)
-        setCarColor(color)
+        console.log(color)
     }
+
+    useEffect(() => {
+        setCarColor(color)
+    }, [color])
 
     return(
         <div className="color-picker">
