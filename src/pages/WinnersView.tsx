@@ -52,24 +52,22 @@ function WinnersView() {
       setWinnerList(formattedWinners)
     }
 
-    if (allCars.length > 0) { // Ensure allCars is not empty before fetching winners
+    if (allCars.length > 0) { 
       fetchWinners()
     }
- }, [fetchData, allCars]) // Add allCars as a dependency
+ }, [fetchData, allCars]) 
 
  const sortByWins = () => {
-    if (allCars.length > 0) { // Ensure allCars is not empty before sorting
+    if (allCars.length > 0) { 
       const sortedWinners = [...winnerList].sort((a, b) => (b.wins ?? 0) - (a.wins ?? 0))
       setWinnerList(sortedWinners)
-      sessionStorage.setItem('sortCriteria', 'wins')
     }
  }
 
  const sortByBestTime = () => {
-    if (allCars.length > 0) { // Ensure allCars is not empty before sorting
+    if (allCars.length > 0) { 
       const sortedWinners = [...winnerList].sort((a, b) => (a.bestTime ?? 0) - (b.bestTime ?? 0))
       setWinnerList(sortedWinners)
-      sessionStorage.setItem('sortCriteria', 'bestTime')
     }
  }
  
